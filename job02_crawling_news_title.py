@@ -58,7 +58,7 @@ for l in range(2,4):
     df_section_title = pd.DataFrame(titles, columns=['titles'])
     df_section_title['category'] = category[l]
     df_titles = pd.concat([df_titles, df_section_title], ignore_index=True)
-    df_titles.to_csv('./crawling_data/crawling_data_{}_{}.csv', index=False)
+    df_titles.to_csv('./crawling_data/crawling_data.csv', index=False)
 
 
 print(df_titles.head())
