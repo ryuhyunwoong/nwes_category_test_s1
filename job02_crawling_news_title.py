@@ -31,7 +31,7 @@ pages = [110, 110, 110, 75, 117, 72]
 df_titles = pd.DataFrame()
 
 #for l in range(0, 6):
-for l in range(1,3):
+for l in range(2,4):
     section_url = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=10{}'.format(l)
     titles = []
     # for k in range(1, pages[l] + 1):
@@ -58,7 +58,7 @@ for l in range(1,3):
     df_section_title = pd.DataFrame(titles, columns=['titles'])
     df_section_title['category'] = category[l]
     df_titles = pd.concat([df_titles, df_section_title], ignore_index=True)
-    df_titles.to_csv('./crawling_data/crawling_data_{}_{}.csv'.format(l, k), index=False)
+    df_titles.to_csv('./crawling_data/crawling_data_{}_{}.csv', index=False)
 
 
 print(df_titles.head())
