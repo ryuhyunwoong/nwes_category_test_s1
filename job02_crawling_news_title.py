@@ -8,8 +8,6 @@ import re
 import time
 import datetime
 
-
-
 options = ChromeOptions()
 user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36"
 options.add_argument('user-agent=' + user_agent)
@@ -58,18 +56,26 @@ for l in range(2,4):
     df_section_title = pd.DataFrame(titles, columns=['titles'])
     df_section_title['category'] = category[l]
     df_titles = pd.concat([df_titles, df_section_title], ignore_index=True)
-    df_titles.to_csv('./crawling_data/crawling_data.csv', index=False)
-
+    df_titles.to_csv('./crawling_data/crawling_data2.csv', index=False)
 
 print(df_titles.head())
 df_titles.info()
 print(df_titles['category'].value_counts())
 
+driver.close()
 
+# Xpath 저장 형태
 # //*[@id="section_body"]/ul[1]/li[1]/dl/dt[2]/a
 # //*[@id="section_body"]/ul[1]/li[2]/dl/dt[2]/a
 # //*[@id="section_body"]/ul[1]/li[5]/dl/dt[2]/a
 # //*[@id="section_body"]/ul[2]/li[1]/dl/dt[2]/a
 # //*[@id="section_body"]/ul[4]/li[5]/dl/dt[2]/a
 
-123456
+# 파일 합치기
+# data1 = pd.read_csv('./crawling_data/crawling_data1.csv')
+# data2 = pd.read_csv('./crawling_data/crawling_data2.csv')
+# data3 = pd.read_csv('./crawling_data/crawling_data3.csv')
+#
+# crawling_data_last = pd.concat([data1, data2], ignore_index=True)
+# crawling_data_last = pd.concat([crawling_data_last, data3], ignore_index=True)
+# crawling_data_last.to_csv('./crawling_data/crawling_data_last.csv')
