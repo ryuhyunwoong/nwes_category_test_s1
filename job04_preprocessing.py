@@ -69,3 +69,4 @@ print(X_test.shape, Y_test.shape)
 
 xy = X_train, X_test, Y_train, Y_test
 np.save('./crawling_data/news_data_max_{}_wordsize_{}'.format(max, wordsize), xy)
+
