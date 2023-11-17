@@ -10,28 +10,28 @@ import pickle
 
 pd.set_option('display.unicode.east_asian_width', True)
 df = pd.read_csv('./crawling_data/naver_news_titles__20231012.csv')
-# print(df.head())
-# df.info()
+print(df.head())
+df.info()
 
 X = df['titles']
 Y = df['category']
 
 encoder = LabelEncoder()
 labeled_y = encoder.fit_transform(Y)
-# print(labeled_y[:3])
+print(labeled_y[:3])
 label = encoder.classes_
-# print(label)
+print(label)
 
 with open('./models/encoder.pickle', 'wb') as f:
     pickle.dump(encoder, f)
 
 onehot_y = to_categorical(labeled_y)
-# print(onehot_y)
+print(onehot_y)
 
 okt = Okt()
 for i in range(len(X)):
     X[i] = okt.morphs(X[i], stem = True)
-# print(X[0])
+print(X[0])
 
 stopwords = pd.read_csv('./stopwords.csv', index_col = 0)
 for j in range(len(X)):
@@ -41,7 +41,7 @@ for j in range(len(X)):
             if X[j][i] not in list(stopwords['stopword']):
                 words.append(X[j][i])
     X[j] = ' '.join(words)
-# print(X[0])
+print(X[0])
 
 token = Tokenizer()
 token.fit_on_texts(X) # 각 형태소에 번호 부여
